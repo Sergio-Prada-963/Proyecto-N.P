@@ -4,7 +4,8 @@ const userSchema = Schema({
     imgUser:{type:Image,required:[true],trim:true,unique:true},
     password:{type:String,required:[true]},
     username:{type:String,required:true},
-    rango:{type:String,default:'usuario',enum:["usuario","admin"]}
+    rango:{type:String,default:'usuario',enum:["usuario","admin"]},
+    estado:{type:Boolean,default:true}
 },{timestamps:true})
 
 const User = model("usuarios",userSchema);
