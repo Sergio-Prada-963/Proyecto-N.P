@@ -2,7 +2,7 @@ import { Schema,model } from "mongoose";
  const vestidoSchema = Schema({
     nombreV:{type:String,required:[true],trim:true,unique:true},
     categoriaV:{type:String,required:[true],trim:true},
-    imgV:{type:Image,required:[true],trim:true,unique:true},
+    imgV:{type:String,required:[true],trim:true,unique:true},
     detallesV:{type:String,required:[true],trim:true},
     aplicacionesV:{type:String,required:[true],trim:true},
     stock:{type:Number,trim:true,default:1},
