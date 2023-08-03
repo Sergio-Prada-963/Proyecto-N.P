@@ -159,19 +159,77 @@ ul {
   color: #FFF;
   background-color: #6c63ff;
 }
-.image{
+.image {
   width: 50%;
   height: 100%;
-  background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.image svg{
+  position: absolute;
 }
 .image img{
-  width: 200px;
+  width: 384px;
+  margin-left: 25px;
 }
 /* End Landing Page */
 
 /* Novias Prada */
 
-
+/* Letra chida */
+.info{
+  display: flex;
+}
+p {
+  font-size: 25px;
+  overflow: hidden;
+  position: relative;
+  color: white;
+}
+p::after {
+  content: "Alquiler";
+  display: inline-block;
+  animation: animation 8s steps(15) infinite;
+  width: 0ch;
+  color: lightseagreen;
+}
+p::before {
+  display: inline-block;
+  content: "";
+  width: 2px;
+  height: 28px;
+  background-color: rgb(0, 0, 0);
+  position: absolute;
+  right: 0;
+  animation: blinking .9s linear alternate infinite;
+}
+@keyframes animation {
+  25% {
+    content: "Alquiler";
+    width: 7ch;
+  }
+  35% {
+    width: 0ch;
+  }
+  55% {
+    content: "Cotizaciones";
+    width: 10ch;
+  }
+  65% {
+    width: 0ch;
+  }
+  85% {
+    content: "Ventas";
+    width: 6ch;
+  }
+  95% {
+    width: 0ch;
+  }
+}
+@keyframes blinking {
+  100%{
+   opacity: 0;
+  }
+}
