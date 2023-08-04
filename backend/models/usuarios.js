@@ -5,7 +5,8 @@ const userSchema = Schema({
     password:{type:String,required:[true]},
     username:{type:String,required:true},
     rango:{type:String,default:'usuario',enum:["usuario","admin"]},
-    estado:{type:Boolean,default:true}
+    estado:{type:Boolean,default:true},
+    googleSignIn:{type:Boolean,default:true}
 },{timestamps:true})
 
 const User = model("usuarios",userSchema);
