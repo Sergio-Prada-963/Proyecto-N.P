@@ -7,6 +7,7 @@ const cuentasSchema = Schema({
     cantidad:{type:Number,trim:true,required:[true]},
     tipoCu:{type:String,required:[true],trim:true,enum:["Alquiler","Venta","Venta y Aquiler"]},
     precioV:{type:Number,required:[true],trim:true},
+    para:{type:String,required:[true],trim:true},
     fechaS:[{used:{type:Array},types:[{name:{type:String,trim:true}}]}],
     fechaY:[{used:{type:Array},types:[{name:{type:String,trim:true}}]}],
     //accesorios
