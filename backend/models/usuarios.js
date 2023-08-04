@@ -4,7 +4,7 @@ const userSchema = Schema({
     imgUser:{type:String,required:[true],trim:true,unique:true},
     password:{type:String,required:[true]},
     username:{type:String,required:true},
-    rango:{type:String,default:'usuario',enum:["usuario","admin"]},
+    rango:{type:String,default:'usuario',required:true},
     estado:{type:Boolean,default:true},
     googleSignIn:{type:Boolean,default:true}
 },{timestamps:true})

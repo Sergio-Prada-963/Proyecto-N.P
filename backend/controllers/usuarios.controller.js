@@ -1,16 +1,17 @@
-import User from "../models/usuarios";
+import User from "../models/usuarios.js";
 import bcryptjs from 'bcryptjs';
 
 const getUser = async (req,res)=>{
-    try {
-        const usuario = await User.find();
-        res.json(usuario)
-    } catch (error) {
-        console.log("no funshion :( " , error);
-    }
+    const {hasta, desde} = req.query;
+    const query = {estado:true};
+    const [total, usuarios] = await Promise.all([
+        User.countDocuments(query),
+        User.find(query).skip(Number(desde)).limit(Number(hasta))
+    ]);
+    res.json({total,usuarios});
 };
 
-const addUser = async (req,res)=>{
+const postUser = async (req,res)=>{
     const {email,imgUser,password,username} = req.body
     const existEmail = await User.findOne({email});
     const existimgUser = await User.findOne({imgUser});
@@ -21,11 +22,17 @@ const addUser = async (req,res)=>{
         return res.status(400).json({message: "La imagen ya se encuentra en uso..."});
     if(existUsername)
         return res.status(400).json({message: "UserName ya existente..."});
-    const newUser = req.body;
+    const newUser = new User(req.body);
     const salt = bcryptjs.genSaltSync();
     newUser.password = bcryptjs.hashSync(password,salt);
     await newUser.save();
     res.json(newUser);
+}
+
+const deleteUser = async (req,res)=>{
+    const {id} = req.params;
+    const usuario = await User.findByIdAndUpdate(id,{estado:false});
+    res.json(usuario);
 }
 
 const putUser = async (req,res)=>{
@@ -35,17 +42,17 @@ const putUser = async (req,res)=>{
         const salt = bcryptjs.genSaltSync();
         resto.password = bcryptjs.hashSync(password,salt);
     }
-    const user = await User.findByIdAndUpdate(id, resto);
+    const user = await User.findByIdAndUpdate(id, resto, {new:true});
     res.json({msg: "Usuario Actualizado", user});
 }
 
-const updateUser = async (req,res)=>{
+/* const updateUser = async (req,res)=>{
     try {
         const user = await User.findOneAndUpdate({_id:req.params},req.body,{new:true});
         res.json(user)
     } catch (error) {
         console.log("no funshion :( " , error);
     }
-}
+} */
 
-export {getUser, addUser, putUser, updateUser}
+export {getUser, postUser, deleteUser, putUser}
