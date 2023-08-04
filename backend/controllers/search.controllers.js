@@ -1,6 +1,6 @@
 import { response } from 'express';
 import { Types } from 'mongoose';
-const objectId = Types.objectId;
+const objectId = Types.ObjectId;
 import Vestido from '../models/vestidos.js';
 import User from '../models/usuarios.js';
 
