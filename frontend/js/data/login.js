@@ -12,6 +12,10 @@ async function credenciales (e){
         password: document.getElementById('logpassword').value
     };
     const data = await loguear(credenciales)
+    console.log(data);
+    if(data.rango === "USER"){
+        window.location.replace("../pages/user/home.user.html")
+    } else{window.location.replace("../pages/admin/home.admin.html")}
 }
 
 function createCuenta(e){

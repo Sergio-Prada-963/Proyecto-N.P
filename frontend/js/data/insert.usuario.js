@@ -65,13 +65,13 @@ export async function insertAccesorios(){
         `
     });detallesAccesorios()
 }
-export async function cotizaciones(){
-    const cotizaciones = await getCotizacion();
-    const listado = document.querySelector('#listas');
-    cotizaciones.forEach(element => {
+// export async function cotizaciones(){
+//     const cotizaciones = await getCotizacion();
+//     const listado = document.querySelector('#listas');
+//     cotizaciones.forEach(element => {
         
-    });
-    listado.innerHTML = `
-    cotizaciones
-    `;
-}
+//     });
+//     listado.innerHTML = `
+//     cotizaciones
+//     `;
+// }
