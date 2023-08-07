@@ -17,6 +17,7 @@ const login = async (req,res=response)=>{
             return res.status(400).json({message: 'Contraseña Incorrecta'});
         
             const token = await generateJWT(usuario.id)
+            res.cookie("tokenX",token)
             res.json({usuario,token});
     } catch (error) {
         console.log(error);

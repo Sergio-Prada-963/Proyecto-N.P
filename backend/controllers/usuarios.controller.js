@@ -10,7 +10,15 @@ const getUser = async (req,res)=>{
     ]);
     res.json({total,usuarios});
 };
-
+const getUserEmail = async(req,res)=>{
+    try {
+        const query = {estado:true}
+        const user = await User.findOne(req.body,query);
+        res.json(user)
+    } catch (error) {
+        console.log("rayos :(",error);
+    }
+}
 const postUser = async (req,res)=>{
     const {email,imgUser,password,username} = req.body
     const existEmail = await User.findOne({email});
@@ -55,4 +63,4 @@ const putUser = async (req,res)=>{
     }
 } */
 
-export {getUser, postUser, deleteUser, putUser}
+export {getUser, getUserEmail, postUser, deleteUser, putUser}
