@@ -5,6 +5,7 @@ import Accesorios from "../models/accesorios.js";
 import Vestido from "../models/vestidos.js";
 import Cuentas from "../models/cuentas.js";
 import Cotizaciones from "../models/cotizaciones.js";
+import Carrito from "../models/carrito.js";
 
 // validations Users
 const isValidRango = async (rango='')=>{
@@ -108,3 +109,12 @@ const existIdLista = async (_id)=>{
         throw new Error(`EL id ${_id} no existe`);
 }
 export {existLista, existIdLista}
+
+//validate Carrito
+
+const existCarrito = async (id)=>{
+    const existeCarrito = await Carrito.findById({id})
+    if(!existeCarrito)
+        throw new Error(`EL id ${id} del carrito no existe`);
+}
+export {existCarrito}

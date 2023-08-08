@@ -8,9 +8,14 @@ export const loguear = async (credenciales)=>{
             body:JSON.stringify(credenciales),
             headers:{'Content-Type':'application/json'}
         });
-        const dataUser = await logi.json();
-        console.log(dataUser);
-        return dataUser
+        if(logi.ok){
+            const {token, rango} = await logi.json();
+            document.cookie = `token-x=${encodeURIComponent(token)}; path=/;`;
+            if(rango === "USER"){
+                window.location.replace("../pages/user/home.user.html")
+            } else{window.location.replace("../pages/admin/home.admin.html")}
+        }
+        return;
     } catch (error) {
         console.log(error,"No funshion :(");
     }

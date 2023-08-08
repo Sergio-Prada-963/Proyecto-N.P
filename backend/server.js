@@ -9,6 +9,7 @@ import routerCuentas from "./routes/cuentas.routes.js";
 import routerCategorias from "./routes/categorias.routes.js";
 import routerAccesorios from "./routes/accesorios.routes.js";
 import routerCotizaciones from "./routes/cotizaciones.routes.js";
+import routerCarrito from "./routes/carrito.routes.js";
 import cookieParser from "cookie-parser";
 import routerUploads from "./routes/upload.routes.js";
 import fileUpload from "express-fileupload";
@@ -27,6 +28,7 @@ class Server {
             categorias: "/api/categorias",
             accesorios: "/api/accesorios",
             cotizaciones: "/api/cotizaciones",
+            carrito: "/api/carrito",
             uploads: "/api/uploads",
             search: '/api/search'
         };
@@ -56,6 +58,7 @@ class Server {
         this.app.use(this.path.categorias,routerCategorias);
         this.app.use(this.path.accesorios,routerAccesorios);
         this.app.use(this.path.cotizaciones,routerCotizaciones);
+        this.app.use(this.path.carrito,routerCarrito);
         this.app.use(this.path.uploads, routerUploads);
         this.app.use(this.path.search,buscar);
     }
